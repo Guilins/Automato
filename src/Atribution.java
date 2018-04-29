@@ -1,4 +1,5 @@
 public class Atribution {
+    Util u = new Util();
     /**
      * método vai validar se a expressão é verdadeira de acordo com a regra
      * (ID) (=) (a..z)começa com letra minúscula (Aa..Zz || 0..9 || _)seguido de uma sequência de letras ou números ou "_"(;)
@@ -7,7 +8,6 @@ public class Atribution {
      */
     public boolean validate(String exp){
 
-        return true;
     }
 
     /**
@@ -18,8 +18,9 @@ public class Atribution {
      * @return se a String preencher essa regra, ele retorna true
      */
     public boolean isId(String str){
+        if(u.isLowerCase(str.charAt(0)){
 
-        return true;
+        }
     }
 
     /**
@@ -30,6 +31,5 @@ public class Atribution {
      */
     public boolean isNum(String str){
 
-        return true;
     }
 }
