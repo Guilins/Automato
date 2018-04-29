@@ -7,6 +7,7 @@ public class Expression {
      */
     public boolean validate(String exp){
 
+        return true;
     }
 
     /**
@@ -18,6 +19,7 @@ public class Expression {
      */
     public boolean ID(String str){
 
+        return true;
     }
 
     /**
@@ -28,6 +30,7 @@ public class Expression {
      */
     public boolean num(String str){
 
+        return true;
     }
 
 }

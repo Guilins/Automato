@@ -7,6 +7,7 @@ public class Atribution {
      */
     public boolean validate(String exp){
 
+        return true;
     }
 
     /**
@@ -18,6 +19,7 @@ public class Atribution {
      */
     public boolean isId(String str){
 
+        return true;
     }
 
     /**
@@ -28,5 +30,6 @@ public class Atribution {
      */
     public boolean isNum(String str){
 
+        return true;
     }
 }
