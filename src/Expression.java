@@ -1,13 +1,21 @@
+import java.util.StringTokenizer;
+
 public class Expression {
+    Util util = new Util();
     /**
-     * método vai validar se se a expressão é verdadeira de acordo com as regras
+     * método vai validar se a expressão é verdadeira de acordo com as regras
      * (ID) (=)(ID || numero[0..9](operador[+, -, *, /](ID || numero[0..9])(;)
      * @param exp
      * @return se a expressão preencherl as regras ele retorna true
      */
-    public boolean validate(String exp){
+    public int validate(String exp){
 
-        return true;
+
+        StringTokenizer st = new StringTokenizer(exp);
+        while (st.hasMoreTokens()){
+
+        }
+        return 0;
     }
 
     /**
@@ -17,9 +25,10 @@ public class Expression {
      * @param str
      * @return se a String preencher essa regra, ele retorna true
      */
-    public boolean ID(String str){
+    public String ID(String str){
+        String id;
 
-        return true;
+        return id;
     }
 
     /**
@@ -31,6 +40,24 @@ public class Expression {
     public boolean num(String str){
 
         return true;
+    }
+
+    /**
+     * método vai realizar uma atribuição de uma variável seguindo o modelo do exercício
+     * @param str
+     * @return a String representando a atribuição (provavelmente um dictionary)
+     */
+    //incompleto
+    public String attribution(String str){
+        String[] id = util.lineSeparate(str);
+
+        StringTokenizer st = new StringTokenizer(str);
+
+        st.hasMoreTokens(){
+
+        }
+
+        return str;
     }
 
 }
