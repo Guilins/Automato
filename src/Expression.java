@@ -49,13 +49,7 @@ public class Expression {
      */
     //incompleto
     public String attribution(String str){
-        String[] id = util.lineSeparate(str);
-
-        StringTokenizer st = new StringTokenizer(str);
-
-        st.hasMoreTokens(){
-
-        }
+        String[] line = util.lineSeparate(str);
 
         return str;
     }

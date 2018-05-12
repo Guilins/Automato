@@ -8,11 +8,7 @@ public class Util {
 
     public String[] lineSeparate(String str){
         String[] row = new String[];
-        StringTokenizer st = new StringTokenizer(str);
-
-        for(int i = 0; i < st.countTokens(); i++){
-            row[i] = st.nextToken();
-        }
+        row = str.split("/n");
 
         return row;
     }
