@@ -131,6 +131,7 @@ public class Main {
                                         valor == 'v' || valor == 'x' || valor == 'w' ||
                                         valor == 'y' || valor == 'z'
                                 ){
+                            System.out.print(""+valor);
                             exp += valor;
                         }else{
                             System.out.println("Erro léxico: um ID deve iniciar com uma letra minuscula");
@@ -161,8 +162,8 @@ public class Main {
                     }
 
                 }
-                for(;j<linha.length();j++){
-                    int valor = linha.charAt(j);
+                for(j = j+1;j<linha.length();j++){
+                    char valor = linha.charAt(j);
                     if(j == inicio) {
                         if (
                             //iniciando a leitura da primeira letra minuscula do ID para ser processado
@@ -179,7 +180,7 @@ public class Main {
                             id += valor;
                         } else {
                             System.out.println("Erro léxico: um ID deve iniciar com uma letra minuscula");
-                            System.out.println(valor);
+                            System.out.println(""+valor);
                             throw new Exception();
                         }
                     }else if(valor == 'a' || valor == 'b' || valor == 'c' ||
@@ -196,16 +197,18 @@ public class Main {
                                 valor == '7' || valor == '8' || valor == '9' ||
                                 valor == '0' || valor == '_'){
                             id += valor;
-                    }if(linha.charAt(j+1) == '+' || linha.charAt(j+1) == '-' || linha.charAt(j+1) == '*' || linha.charAt(j+1) == '/'){
-                        try {
-                            valores.add(identificadores.get(id));
-                        } catch (Exception e) {
-                            System.out.println("erro: variável '" + id + "' não declarada");
-                            e.printStackTrace();
+                    }if(j != linha.length() - 1) {
+                        if (linha.charAt(j + 1) == '+' || linha.charAt(j + 1) == '-' || linha.charAt(j + 1) == '*' || linha.charAt(j + 1) == '/') {
+                            try {
+                                valores.add(identificadores.get(id));
+                            } catch (Exception e) {
+                                System.out.println("erro: variável '" + id + "' não declarada");
+                                e.printStackTrace();
+                            }
+                            op.add(linha.charAt(j + 1));
+                            j = j + 2;
+                            valor = linha.charAt(j);
                         }
-                        op.add(linha.charAt(j + 1));
-                        j = j + 2;
-                        valor = linha.charAt(j);
                     }
                     if(linha.charAt(j) == ';')
                         break;
