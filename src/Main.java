@@ -90,10 +90,12 @@ public class Main {
                                         numero += linha.charAt(j);
                                     }
                                     //se a leitura estiver no final da linha então é feita a atribuiição através de um hash e as variáveis utilizadas são resetadas
-                                    else if(i == linha.length()){
+                                    else if(linha.charAt(j) == ';'){
                                         System.out.println("numero "+numero);
                                         identificadores.put(identificador, Float.parseFloat(numero));
                                         numero = "";
+                                        linha = leitura.readLine();
+                                        i = -1;
                                         break;
                                     }else{
                                         throw new Exception();
