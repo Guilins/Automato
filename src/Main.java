@@ -81,7 +81,7 @@ public class Main {
                             if(linha.charAt(i+2)== ' '){
                                 for(int j = i+3; j < linha.length();j++ ){
                                     if(
-                                            //só são aceitos números entre 0 e 9 na atribuição
+                                        //só são aceitos números entre 0 e 9 na atribuição
                                             linha.charAt(j) == '1' || linha.charAt(j) == '2' || linha.charAt(j) == '3' ||
                                                     linha.charAt(j) == '4' || linha.charAt(j) == '5' || linha.charAt(j) == '6' ||
                                                     linha.charAt(j) == '7' || linha.charAt(j) == '8' || linha.charAt(j) == '9' ||
@@ -104,8 +104,10 @@ public class Main {
                             }
                         }
                     }
-                    if(linha.length() == 0)
+                    if(linha.length() == 0) {
+                        linha = leitura.readLine();
                         break;
+                    }
                 }
                 flag = true;
                 int j = 0;
@@ -122,7 +124,7 @@ public class Main {
                     char valor = linha.charAt(i);
                     if(i==0){
                         if(
-                                //iniciando a leitura da primeira letra minuscula do ID da expressão
+                            //iniciando a leitura da primeira letra minuscula do ID da expressão
                                 valor == 'a' || valor == 'b' || valor == 'c' ||
                                         valor == 'd' || valor == 'e' || valor == 'f' ||
                                         valor == 'g' || valor == 'h' || valor == 'i' ||
@@ -164,11 +166,11 @@ public class Main {
                     }
 
                 }
-                for(j = j+1;j<linha.length();j++){
+                for(; j < linha.length() ;j++){
                     char valor = linha.charAt(j);
                     if(j == inicio) {
                         if (
-                            //iniciando a leitura da primeira letra minuscula do ID para ser processado
+                            //iniciando a leitura da primeira letra minuscula do ID para ser processado depois do =
                                 valor == 'a' || valor == 'b' || valor == 'c' ||
                                         valor == 'd' || valor == 'e' || valor == 'f' ||
                                         valor == 'g' || valor == 'h' || valor == 'i' ||
@@ -185,57 +187,57 @@ public class Main {
                             System.out.println(""+valor);
                             throw new Exception();
                         }
+                        //lendo o resto do ID depois do =
                     }else if(valor == 'a' || valor == 'b' || valor == 'c' ||
-                                valor == 'd' || valor == 'e' || valor == 'f' ||
-                                valor == 'g' || valor == 'h' || valor == 'i' ||
-                                valor == 'j' || valor == 'k' || valor == 'l' ||
-                                valor == 'm' || valor == 'n' || valor == 'o' ||
-                                valor == 'p' || valor == 'q' || valor == 'r' ||
-                                valor == 's' || valor == 't' || valor == 'u' ||
-                                valor == 'v' || valor == 'x' || valor == 'w' ||
-                                valor == 'y' || valor == 'z' ||
-                                valor == '1' || valor == '2' || valor == '3' ||
-                                valor == '4' || valor == '5' || valor == '6' ||
-                                valor == '7' || valor == '8' || valor == '9' ||
-                                valor == '0' || valor == '_'){
-                            id += valor;
-                    }if(j != linha.length() - 1) {
+                            valor == 'd' || valor == 'e' || valor == 'f' ||
+                            valor == 'g' || valor == 'h' || valor == 'i' ||
+                            valor == 'j' || valor == 'k' || valor == 'l' ||
+                            valor == 'm' || valor == 'n' || valor == 'o' ||
+                            valor == 'p' || valor == 'q' || valor == 'r' ||
+                            valor == 's' || valor == 't' || valor == 'u' ||
+                            valor == 'v' || valor == 'x' || valor == 'w' ||
+                            valor == 'y' || valor == 'z' ||
+                            valor == '1' || valor == '2' || valor == '3' ||
+                            valor == '4' || valor == '5' || valor == '6' ||
+                            valor == '7' || valor == '8' || valor == '9' ||
+                            valor == '0' || valor == '_'){
+                        id += valor;
+                    }if(j < linha.length() - 1) {
                         if (linha.charAt(j + 1) == '+' || linha.charAt(j + 1) == '-' || linha.charAt(j + 1) == '*' || linha.charAt(j + 1) == '/') {
                             try {
                                 valores.add(identificadores.get(id));
+
                             } catch (Exception e) {
                                 System.out.println("erro: variável '" + id + "' não declarada");
                                 e.printStackTrace();
                             }
                             op.add(linha.charAt(j + 1));
-                            j = j + 2;
                             valor = linha.charAt(j);
+                            id = "";
                         }
                     }
-                    if(linha.charAt(j) == ';')
+                    if(linha.charAt(j) == ';') {
+                        for(int i = 1; i < valores.size(); i++){
+                            for(int k = 0; k < op.size(); k++){
+                                if(op.get(k) == '*')
+                                    resultado += valores.get(j) * valores.get(k+1);
+                                if(op.get(k) == '/')
+                                    resultado += valores.get(j) / valores.get(k+1);
+                                op.remove(k);
+                                valores.remove(k);
+                            }
+                            if(op.get(i-1) == '+')
+                                resultado += valores.get(i) + valores.get(i+1);
+                            if(op.get(i-1) == '-')
+                                resultado += valores.get(i) - valores.get(i+1);
+                        }
                         break;
-                }
-                for(int i = 1; i < valores.size(); i++){
-                    for(int k = 0; k < op.size(); k++){
-                        if(op.get(k) == '*')
-                            resultado += valores.get(j) * valores.get(k+1);
-                        if(op.get(k) == '/')
-                            resultado += valores.get(j) / valores.get(k+1);
-                        op.remove(k);
-                        valores.remove(k);
-                        valores.remove(j + 1);
                     }
-                    if(op.get(i-1) == '+')
-                        resultado += valores.get(i) + valores.get(i+1);
-                    if(op.get(i-1) == '-')
-                        resultado += valores.get(i) - valores.get(i+1);
                 }
             }
-                System.out.println("O resultado da expressão é: "+ resultado);
-                identificador = "";
-                linha = leitura.readLine();
-
-            arquivo.close();
+            System.out.println("O resultado da expressão é: "+ resultado);
+            identificador = "";
+            linha = leitura.readLine();
 
         } catch (IOException e) {
             System.err.println("Erro na leitura do arquivo");
